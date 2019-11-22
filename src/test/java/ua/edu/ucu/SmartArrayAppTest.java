@@ -1,6 +1,10 @@
 package ua.edu.ucu;
 
 import org.junit.Test;
+import ua.edu.ucu.smartarr.BaseArray;
+import ua.edu.ucu.smartarr.DistinctDecorator;
+import ua.edu.ucu.smartarr.SmartArray;
+
 import static org.junit.Assert.*;
 
 /**
@@ -11,10 +15,15 @@ public class SmartArrayAppTest {
 
     @Test
     public void testFilterPositiveIntegersSortAndMultiplyBy2() {
+        Object[] n = {1, 2, 3, 3, 4, 5};
+        BaseArray b = new BaseArray(n);
+        DistinctDecorator i = new DistinctDecorator(b);
+
         Integer[] integers = {-1, 2, 0, 1, -5, 3};
         
         Integer[] res = 
                 SmartArrayApp.filterPositiveIntegersSortAndMultiplyBy2(integers);
+
         Integer[] expectedRes = {2, 4, 6};
         
         assertArrayEquals(expectedRes, res);        
@@ -34,7 +43,9 @@ public class SmartArrayAppTest {
         String[] studentNames = 
                 SmartArrayApp.findDistinctStudentNamesFrom2ndYearWithGPAgt4AndOrderedBySurname(students);
         String[] expectedStudentNames = {"Borek Tomasz", "Kranga Antons", "Sutter Burr"};
-
+        for (String e : studentNames) {
+            System.out.println(e);
+        }
         assertArrayEquals(expectedStudentNames, studentNames);
     }
 }
